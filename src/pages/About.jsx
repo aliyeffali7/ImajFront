@@ -1,6 +1,5 @@
 import { G, GL, CREAM, WHITE, DARK, MID, RADIUS } from "../theme";
 import { Label, H2, PageHero } from "../components/Shared";
-import { TEAM } from "../data";
 
 const QUICK_STATS = [
   { value: "15+", label: "il təcrübə" },
@@ -17,7 +16,7 @@ const VALUES = [
 ];
 
 const TIMELINE = [
-  { year: "2009", title: "Şirkətin əsası",         desc: "ReStyle Bakı şəhərində 8 nəfərlik texniki komanda ilə internet provayderlik xidmətləri göstərərək fəaliyyətə başladı." },
+  { year: "2009", title: "Şirkətin əsası",         desc: "ImajOnline Bakı şəhərində 8 nəfərlik texniki komanda ilə internet provayderlik xidmətləri göstərərək fəaliyyətə başladı." },
   { year: "2012", title: "Korporativ genişlənmə",  desc: "İlk korporativ müştərilər əldə edildi. Bakı biznes mərkəzlərinə dedicated internet xidmətləri göstərilməyə başlandı." },
   { year: "2016", title: "BakuCloud Hub açıldı",   desc: "Azərbaycanda ilk Tier III sertifikatlı kommersiya data mərkəzi fəaliyyətə başladı. Bulud hosting xidmətləri təqdim edildi." },
   { year: "2019", title: "CityFiber Baku",         desc: "FTTH layihəsi ilə 200,000-dən çox abunəçiyə fiber internet xidmətinin çatdırılması başlandı. Şəbəkə kapasitəsi 10x artırıldı." },
@@ -29,9 +28,9 @@ export default function AboutPage({ nav }) {
   return (
     <div style={{ background: CREAM }}>
       <PageHero
-        title="ReStyle haqqında"
+        title="ImajOnline haqqında"
         subtitle="Bizim hekayə"
-        img="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1400&q=85"
+        img="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1400&q=85"
       />
 
       {/* ── QUICK STATS BAND ── */}
@@ -56,7 +55,7 @@ export default function AboutPage({ nav }) {
               <em style={{ color: G, fontWeight: 400 }}>rəqəmsal infrastrukturunu qururuq</em>
             </H2>
             <p style={{ fontFamily: "'Manrope', sans-serif", color: MID, lineHeight: 1.95, fontSize: "0.97rem", marginBottom: "1.4rem", fontWeight: 300 }}>
-              2009-cu ildə əsası qoyulan ReStyle, Bakıda kiçik bir internet provayderlik şirkəti kimi fəaliyyətə başladı. 15 il ərzində internet, hosting, şəbəkə infrastrukturu və kibertəhlükəsizlik sahəsində xidmətlərini genişləndirərək Azərbaycanın ən etibarlı IT xidmətlər şirkətinə çevrildik.
+              2009-cu ildə əsası qoyulan ImajOnline, Bakıda kiçik bir internet provayderlik şirkəti kimi fəaliyyətə başladı. 15 il ərzində internet, hosting, şəbəkə infrastrukturu və kibertəhlükəsizlik sahəsində xidmətlərini genişləndirərək Azərbaycanın ən etibarlı IT xidmətlər şirkətinə çevrildik.
             </p>
             <p style={{ fontFamily: "'Manrope', sans-serif", color: MID, lineHeight: 1.95, fontSize: "0.97rem", marginBottom: "1.4rem", fontWeight: 300 }}>
               Missiyamız sadədir: biznes və dövlət qurumlarına sürətli internet, etibarlı hosting, güclü şəbəkə infrastrukturu və proaktiv kibertəhlükəsizlik xidmətləri təqdim etmək.
@@ -133,38 +132,6 @@ export default function AboutPage({ nav }) {
                     <div style={{ fontFamily: "'Manrope', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: DARK, marginBottom: "0.5rem" }}>{item.title}</div>
                     <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: "0.9rem", color: MID, lineHeight: 1.8, fontWeight: 300 }}>{item.desc}</p>
                   </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── TEAM ── */}
-      <section style={{ background: DARK, padding: "8rem 4rem" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: "4rem" }}>
-            <div style={{ display: "inline-flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
-              <div style={{ width: 32, height: 2, background: G }} />
-              <span style={{ fontFamily: "'Manrope', sans-serif", fontSize: "0.7rem", letterSpacing: "0.28em", color: G, textTransform: "uppercase" }}>Komandamız</span>
-            </div>
-            <h2 style={{ fontFamily: "'Manrope', sans-serif", fontSize: "clamp(2rem, 3.5vw, 2.9rem)", fontWeight: 600, color: WHITE }}>Rəhbərlik komandası</h2>
-          </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "2rem" }}>
-            {TEAM.map((m) => (
-              <div key={m.name} style={{ textAlign: "center", background: "rgba(255,255,255,0.05)", borderRadius: RADIUS, overflow: "hidden", border: `1px solid rgba(155,53,116,0.2)` }}>
-                <div style={{ position: "relative", marginBottom: "1.4rem", overflow: "hidden" }}>
-                  <img
-                    src={m.img}
-                    alt={m.name}
-                    style={{ width: "100%", height: 300, objectFit: "cover", objectPosition: "top", filter: "grayscale(20%)" }}
-                  />
-                  <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 4, background: G }} />
-                </div>
-                <div style={{ padding: "0 1.5rem 1.5rem" }}>
-                  <div style={{ fontFamily: "'Manrope', sans-serif", fontSize: "1.15rem", fontWeight: 600, color: WHITE, marginBottom: "0.3rem" }}>{m.name}</div>
-                  <div style={{ fontFamily: "'Manrope', sans-serif", fontSize: "0.7rem", color: G, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.6rem" }}>{m.role}</div>
-                  <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: "0.82rem", color: "rgba(255,255,255,0.7)", lineHeight: 1.7, fontWeight: 300, maxWidth: 260, margin: "0 auto" }}>{m.bio}</p>
                 </div>
               </div>
             ))}

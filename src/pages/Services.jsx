@@ -20,7 +20,7 @@ export default function ServicesPage({ nav }) {
       <PageHero
         title="Xidmətlərimiz"
         subtitle="Nələri təqdim edirik"
-        img="https://images.unsplash.com/photo-1551808525-99a65dd43809?w=1400&q=85"
+        img="/../public/xidmetler.png"
       />
 
       {/* ── SERVICE TABS ── */}
@@ -104,12 +104,20 @@ export default function ServicesPage({ nav }) {
               <div
                 key={svc.id}
                 onClick={() => { setActive(SERVICES_DATA.indexOf(svc)); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-                style={{ background: WHITE, padding: "2.5rem", cursor: "pointer", borderBottom: `3px solid transparent`, transition: "border-color 0.3s", borderRadius: RADIUS }}
+                style={{ background: WHITE, cursor: "pointer", borderBottom: `3px solid transparent`, transition: "border-color 0.3s", borderRadius: RADIUS, overflow: "hidden" }}
                 onMouseEnter={(e) => (e.currentTarget.style.borderBottomColor = G)}
                 onMouseLeave={(e) => (e.currentTarget.style.borderBottomColor = "transparent")}
               >
-                <h3 style={{ fontFamily: "'Manrope', sans-serif", fontSize: "1.2rem", fontWeight: 600, color: DARK, marginBottom: "0.75rem" }}>{svc.title}</h3>
-                <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: "0.85rem", color: LIGHT, lineHeight: 1.75, fontWeight: 300 }}>{svc.short}</p>
+                <div style={{ position: "relative", overflow: "hidden", height: 180 }}>
+                  <img src={svc.img} alt={svc.title} style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.4s" }}
+                    onMouseEnter={(e) => (e.target.style.transform = "scale(1.05)")}
+                    onMouseLeave={(e) => (e.target.style.transform = "scale(1)")}
+                  />
+                </div>
+                <div style={{ padding: "1.8rem 2rem 2rem" }}>
+                  <h3 style={{ fontFamily: "'Manrope', sans-serif", fontSize: "1.2rem", fontWeight: 600, color: DARK, marginBottom: "0.75rem" }}>{svc.title}</h3>
+                  <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: "0.85rem", color: LIGHT, lineHeight: 1.75, fontWeight: 300 }}>{svc.short}</p>
+                </div>
               </div>
             ))}
           </div>

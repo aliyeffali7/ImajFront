@@ -53,7 +53,7 @@ export default function HomePage({ nav }) {
       {/* ── HERO ── */}
       <section style={{ height: "100vh", position: "relative", display: "flex", alignItems: "center", overflow: "hidden" }}>
         <img
-          src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1800&q=90"
+          src="/network.png"
           alt="Hero"
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
         />
@@ -134,7 +134,7 @@ export default function HomePage({ nav }) {
               <em style={{ color: G, fontWeight: 400 }}>2009-cu ildən etibarlı tərəfdaşı</em>
             </H2>
             <p style={{ fontFamily: "'Manrope', sans-serif", color: MID, lineHeight: 1.95, fontSize: "0.95rem", marginBottom: "1.2rem", fontWeight: 300 }}>
-              ReStyle Azərbaycanın aparıcı IT xidmətlər şirkətidir — ölkənin rəqəmsal infrastrukturunu müəyyən edən internet provayderlik, bulud hosting, şəbəkə həlləri və kibertəhlükəsizlik xidmətləri göstərir.
+              ImajOnline Azərbaycanın aparıcı IT xidmətlər şirkətidir — ölkənin rəqəmsal infrastrukturunu müəyyən edən internet provayderlik, bulud hosting, şəbəkə həlləri və kibertəhlükəsizlik xidmətləri göstərir.
             </p>
             <p style={{ fontFamily: "'Manrope', sans-serif", color: MID, lineHeight: 1.95, fontSize: "0.95rem", marginBottom: "2.5rem", fontWeight: 300 }}>
               250-dən çox texniki mütəxəssis və 15 illik təcrübə ilə regionda dövlət qurumlarının, bankların və biznes şirkətlərinin etibarlı IT tərəfdaşıyıq.

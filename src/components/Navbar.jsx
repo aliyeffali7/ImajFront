@@ -33,7 +33,7 @@ export default function Navbar({ page, nav, scrolled }) {
       >
         <img
           src="/image 3.svg"
-          alt="ReStyle loqosu"
+          alt="ImajOnline loqosu"
           style={{ height: 32, width: "auto", display: "block" }}
         />
 
@@ -47,7 +47,7 @@ export default function Navbar({ page, nav, scrolled }) {
           letterSpacing: "0.05em",
           transition: "color 0.4s",
         }}>
-          RESTYLE
+        
         </span>
       </button>
 

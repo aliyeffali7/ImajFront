@@ -12,7 +12,7 @@ export default function Footer({ nav }) {
     },
     {
       heading: "Əlaqə",
-      links: [["Bakı, Azərbaycan", "#"], ["info@restyle.az", "#"], ["+994 12 555 0000", "#"], ["Dəstək portalı", "contact"]],
+      links: [["Bakı, Azərbaycan", "#"], ["info@imajonline.az", "#"], ["+994 12 555 0000", "#"], ["Dəstək portalı", "contact"]],
     },
   ];
 
@@ -30,13 +30,13 @@ export default function Footer({ nav }) {
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.2rem" }}>
               <img
-                src="/restyle2.svg"
-                alt="ReStyle loqosu"
+                src="/image 3.svg"
+                alt="ImajOnline loqosu"
                 style={{ height: 30, width: "auto", display: "block" }}
               />
             </div>
             <p style={{ color: "#666", fontSize: "0.88rem", lineHeight: 1.8, maxWidth: 280, fontWeight: 300 }}>
-              2009-cu ildən bəri internet, hosting, şəbəkə infrastrukturu və kibertəhlükəsizlik xidmətləri göstərən Azərbaycanın aparıcı IT şirkəti ReStyle.
+              2009-cu ildən bəri internet, hosting, şəbəkə infrastrukturu və kibertəhlükəsizlik xidmətləri göstərən Azərbaycanın aparıcı IT şirkəti ImajOnline.
             </p>
           </div>
 
@@ -62,7 +62,7 @@ export default function Footer({ nav }) {
 
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: "2rem" }}>
           <div style={{ color: "#444", fontSize: "0.75rem" }}>
-            © 2025 ReStyle IT Services. Bütün hüquqlar qorunur.
+            © 2025 ImajOnline IT Services. Bütün hüquqlar qorunur.
           </div>
           <div style={{ display: "flex", gap: "1.5rem" }}>
             {["Instagram", "LinkedIn", "Facebook"].map((s) => (

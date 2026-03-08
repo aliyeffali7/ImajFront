@@ -6,7 +6,7 @@ import { SERVICES_DATA } from "../data";
 const INFO = [
   { label: "Office", value: "Izzatdin Hasanoglu 84, Narimanov, Bakı, Azərbaycan" },
   { label: "Phone",  value: "+994 12 555 0000" },
-  { label: "Email",  value: "info@restyle.az" },
+  { label: "Email",  value: "info@imajonline.az" },
   { label: "Hours",  value: "B.e – Cümə, 09:00 – 18:00 AZT · 24/7 NOC dəstək" },
 ];
 
@@ -32,7 +32,7 @@ export default function ContactPage() {
       <PageHero
         title="Bizimlə əlaqə"
         subtitle="Əlaqə saxlayın"
-        img="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1400&q=85"
+        img="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1400&q=85"
       />
 
       <section style={{ padding: "7rem 4rem", background: WHITE }}>
