@@ -20,7 +20,7 @@ export default function ServicesPage({ nav }) {
       <PageHero
         title="Xidmətlərimiz"
         subtitle="Nələri təqdim edirik"
-        img="/../public/xidmetler.png"
+        img="/xidmetler.png"
       />
 
       {/* ── SERVICE TABS ── */}
