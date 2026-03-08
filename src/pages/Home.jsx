@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { G, GL, CREAM, WHITE, DARK, MID, LIGHT, RADIUS } from "../theme";
 import { Label, H2 } from "../components/Shared";
-import { PROJECTS, SERVICES_DATA } from "../data";
+import { SERVICES_DATA } from "../data";
 
 function useCountUp(target, duration = 1800, start = false) {
   const [count, setCount] = useState(0);
@@ -45,8 +45,6 @@ export default function HomePage({ nav }) {
     { v: 8,   s: "",  l: "Sənaye mükafatları" },
   ];
 
-  const featured = PROJECTS.filter((p) => p.featured).slice(0, 4);
-
   return (
     <div style={{ background: CREAM }}>
 
@@ -59,7 +57,7 @@ export default function HomePage({ nav }) {
         />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg, rgba(12,10,8,0.85) 0%, rgba(12,10,8,0.5) 55%, rgba(12,10,8,0.1) 100%)" }} />
 
-        <div style={{ position: "relative", padding: "0 4rem", maxWidth: 780 }}>
+        <div className="hero-content" style={{ maxWidth: 780 }}>
           <div style={{ display: "inline-flex", alignItems: "center", gap: "0.75rem", marginBottom: "2rem", animation: "fadeUp 1s ease 0.2s both" }}>
             <div style={{ width: 28, height: 1, background: GL }} />
             <span style={{ fontFamily: "'Manrope', sans-serif", fontSize: "0.7rem", letterSpacing: "0.3em", color: GL, textTransform: "uppercase" }}>
@@ -105,8 +103,8 @@ export default function HomePage({ nav }) {
       </section>
 
       {/* ── STATS ── */}
-      <section ref={statsRef} style={{ background: WHITE, borderBottom: "1px solid #ede8df", padding: "5rem 4rem" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: "2rem", textAlign: "center" }}>
+      <section ref={statsRef} className="r-sec-sm r-pad" style={{ background: WHITE, borderBottom: "1px solid #ede8df" }}>
+        <div className="g-stats" style={{ maxWidth: 1100, margin: "0 auto" }}>
           {stats.map((s, i) => (
             <div key={s.l}>
               <div style={{ fontFamily: "'Manrope', sans-serif", color: G, fontSize: "3.6rem", lineHeight: 1, fontWeight: 700 }}>{counts[i]}{s.s}</div>
@@ -117,9 +115,9 @@ export default function HomePage({ nav }) {
       </section>
 
       {/* ── ABOUT SNIPPET ── */}
-      <section style={{ padding: "8rem 4rem", background: CREAM }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6rem", alignItems: "center" }}>
-          <div style={{ position: "relative", height: 520 }}>
+      <section className="r-sec r-pad" style={{ background: CREAM }}>
+        <div className="g-about" style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <div className="about-img">
             <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=700&q=85" alt="Data Center" style={{ position: "absolute", top: 0, left: 0, width: "72%", height: "76%", objectFit: "cover", boxShadow: "0 20px 60px rgba(0,0,0,0.13)" }} />
             <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=500&q=80" alt="IT Team" style={{ position: "absolute", bottom: 0, right: 0, width: "52%", height: "46%", objectFit: "cover", boxShadow: "0 20px 60px rgba(0,0,0,0.13)", border: `4px solid ${CREAM}` }} />
             <div style={{ position: "absolute", bottom: "5.5rem", left: "-1.5rem", background: G, padding: "1.4rem 1.8rem", boxShadow: "0 10px 40px rgba(155,53,116,0.3)", borderRadius: RADIUS }}>
@@ -152,32 +150,27 @@ export default function HomePage({ nav }) {
       </section>
 
       {/* ── SERVICES SNIPPET ── */}
-      <section style={{ background: WHITE, padding: "8rem 4rem" }}>
+      <section className="r-sec r-pad" style={{ background: WHITE }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "4rem" }}>
+          <div className="g-svc-header">
             <div><Label>Nə edirik</Label><H2>Xidmətlərimiz</H2></div>
             <button onClick={() => nav("services")} style={{ background: "none", border: "none", borderBottom: `1.5px solid ${G}`, paddingBottom: "0.2rem", cursor: "pointer", fontFamily: "'Manrope', sans-serif", fontSize: "0.8rem", color: G, letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 600 }}>
               Bütün xidmətlərə bax →
             </button>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem" }}>
-            {SERVICES_DATA.slice(0, 3).map((s, i) => (
+          <div className="g-services">
+            {SERVICES_DATA.map((s, i) => (
               <div
                 key={s.id}
                 onMouseEnter={() => setHov(i)}
                 onMouseLeave={() => setHov(null)}
                 onClick={() => nav("services")}
-                style={{ background: hov === i ? DARK : CREAM, transition: "all 0.4s", overflow: "hidden", cursor: "pointer", borderRadius: RADIUS }}
+                style={{ background: hov === i ? DARK : WHITE, transition: "all 0.35s", cursor: "pointer", borderRadius: RADIUS, padding: "2.2rem 1.8rem", border: "1px solid #ede8df", borderBottom: hov === i ? `3px solid ${G}` : "1px solid #ede8df" }}
               >
-                <div style={{ position: "relative", paddingBottom: "60%", overflow: "hidden" }}>
-                  <img src={s.img} alt={s.title} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.6s", transform: hov === i ? "scale(1.07)" : "scale(1)", filter: hov === i ? "brightness(0.45)" : "brightness(0.8)" }} />
-                  <div style={{ position: "absolute", top: "1rem", left: "1rem", fontFamily: "'Manrope', sans-serif", fontSize: "1.8rem", fontWeight: 700, color: hov === i ? G : "rgba(255,255,255,0.4)", transition: "color 0.4s" }}>
-                    {String(i + 1).padStart(2, "0")}
-                  </div>
-                </div>
-                <div style={{ padding: "1.6rem" }}>
-                  <h3 style={{ fontFamily: "'Manrope', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: hov === i ? "#fff" : DARK, marginBottom: "0.6rem", transition: "color 0.4s" }}>{s.title}</h3>
-                  <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: "0.83rem", lineHeight: 1.7, color: hov === i ? "rgba(255,255,255,0.6)" : "#888", fontWeight: 300, transition: "color 0.4s" }}>{s.short}</p>
+                <h3 style={{ fontFamily: "'Manrope', sans-serif", fontSize: "1rem", fontWeight: 600, color: hov === i ? "#fff" : DARK, marginBottom: "0.5rem", transition: "color 0.35s" }}>{s.title}</h3>
+                <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: "0.82rem", lineHeight: 1.7, color: hov === i ? "rgba(255,255,255,0.55)" : "#999", fontWeight: 300, transition: "color 0.35s" }}>{s.short}</p>
+                <div style={{ marginTop: "1.4rem", fontFamily: "'Manrope', sans-serif", fontSize: "0.72rem", color: hov === i ? G : "transparent", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", transition: "color 0.35s" }}>
+                  Qiymətlərə bax →
                 </div>
               </div>
             ))}
@@ -185,47 +178,10 @@ export default function HomePage({ nav }) {
         </div>
       </section>
 
-      {/* ── FEATURED PROJECTS ── */}
-      <section style={{ padding: "8rem 4rem", background: CREAM }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "3.5rem" }}>
-            <div><Label>İşlərimiz</Label><H2>Seçilmiş layihələr</H2></div>
-            <button onClick={() => nav("projects")} style={{ background: "none", border: "none", borderBottom: `1.5px solid ${G}`, paddingBottom: "0.2rem", cursor: "pointer", fontFamily: "'Manrope', sans-serif", fontSize: "0.8rem", color: G, letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 600 }}>
-              Bütün layihələrə bax →
-            </button>
-          </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "1.5rem" }}>
-            {featured.map((p, i) => {
-              const isHov = hov === `fp${i}`;
-              return (
-                <div
-                  key={p.id}
-                  onMouseEnter={() => setHov(`fp${i}`)}
-                  onMouseLeave={() => setHov(null)}
-                  onClick={() => nav("project", p.id)}
-                  style={{ position: "relative", overflow: "hidden", paddingBottom: i === 0 ? "56%" : "48%", cursor: "pointer", borderRadius: RADIUS }}
-                >
-                  <img src={p.img} alt={p.title} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.6s", transform: isHov ? "scale(1.05)" : "scale(1)" }} />
-                  <div style={{ position: "absolute", inset: 0, background: isHov ? "linear-gradient(transparent 20%, rgba(15,10,5,0.85))" : "linear-gradient(transparent 45%, rgba(15,10,5,0.7))", transition: "all 0.4s" }} />
-                  <div style={{ position: "absolute", top: "1rem", left: "1rem", background: G, padding: "0.28rem 0.75rem", borderRadius: RADIUS }}>
-                    <span style={{ fontFamily: "'Manrope', sans-serif", fontSize: "0.6rem", color: "#fff", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase" }}>{p.category}</span>
-                  </div>
-                  <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "1.5rem", transform: isHov ? "translateY(0)" : "translateY(4px)", transition: "transform 0.4s" }}>
-                  <div style={{ fontFamily: "'Manrope', sans-serif", fontSize: "0.62rem", color: GL, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "0.35rem" }}>{p.location} · {p.year}</div>
-                  <div style={{ fontFamily: "'Manrope', sans-serif", fontSize: "1.4rem", color: "#fff", fontWeight: 600 }}>{p.title}</div>
-                  {isHov && <div style={{ fontFamily: "'Manrope', sans-serif", fontSize: "0.75rem", color: "rgba(255,255,255,0.65)", marginTop: "0.4rem" }}>Ətraflı bax →</div>}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
       {/* ── CTA BAND ── */}
-      <section style={{ background: DARK, padding: "6rem 4rem", position: "relative", overflow: "hidden" }}>
+      <section className="r-sec r-pad" style={{ background: DARK, position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, backgroundImage: `url(https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1400&q=70)`, backgroundSize: "cover", backgroundPosition: "center", opacity: 0.12 }} />
-        <div style={{ position: "relative", maxWidth: 1200, margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <div className="g-cta" style={{ position: "relative", maxWidth: 1200, margin: "0 auto" }}>
           <div>
             <h2 style={{ fontFamily: "'Manrope', sans-serif", fontSize: "clamp(1.8rem, 3vw, 2.6rem)", fontWeight: 600, color: "#fff", marginBottom: "0.8rem" }}>
               <em style={{ color: GL }}>Etibarlı</em> IT tərəfdaşı axtarırsınız?

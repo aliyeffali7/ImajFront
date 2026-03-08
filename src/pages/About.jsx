@@ -34,8 +34,8 @@ export default function AboutPage({ nav }) {
       />
 
       {/* ── QUICK STATS BAND ── */}
-      <section style={{ background: DARK, padding: "2.5rem 4rem" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "2rem", textAlign: "center" }}>
+      <section className="r-sec-xs r-pad" style={{ background: DARK }}>
+        <div className="g-quick-stats" style={{ maxWidth: 1200, margin: "0 auto" }}>
           {QUICK_STATS.map((s) => (
             <div key={s.label}>
               <div style={{ fontFamily: "'Manrope', sans-serif", fontSize: "2.5rem", fontWeight: 700, color: G, lineHeight: 1 }}>{s.value}</div>
@@ -46,8 +46,8 @@ export default function AboutPage({ nav }) {
       </section>
 
       {/* ── MISSION ── */}
-      <section style={{ padding: "8rem 4rem", background: CREAM }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "7rem", alignItems: "center" }}>
+      <section className="r-sec r-pad" style={{ background: CREAM }}>
+        <div className="g-mission" style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ borderLeft: `4px solid ${G}`, paddingLeft: "2rem" }}>
             <Label>Missiyamız</Label>
             <H2 style={{ marginBottom: "1.8rem" }}>
@@ -64,7 +64,7 @@ export default function AboutPage({ nav }) {
               İnternet provayderlik, bulud hosting, şəbəkə dizaynı və kibertəhlükəsizlik daxil olmaqla bütün əsas IT sahələrində fəaliyyət göstərir, 250+ texniki mütəxəssisdən ibarət daxili komandamızla xidmətləri idarə edirik.
             </p>
           </div>
-          <div style={{ position: "relative", height: 520 }}>
+          <div className="about-img">
             <img
               src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=700&q=85"
               alt="Data Center"
@@ -84,7 +84,7 @@ export default function AboutPage({ nav }) {
       </section>
 
       {/* ── VALUES ── */}
-      <section style={{ background: DARK, padding: "6rem 4rem" }}>
+      <section className="r-sec r-pad" style={{ background: DARK }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: "4rem" }}>
             <div style={{ display: "inline-flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
@@ -93,7 +93,7 @@ export default function AboutPage({ nav }) {
             </div>
             <h2 style={{ fontFamily: "'Manrope', sans-serif", fontSize: "clamp(2rem, 3.5vw, 2.9rem)", fontWeight: 600, color: WHITE }}>Əsas dəyərlərimiz</h2>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1.5rem" }}>
+          <div className="g-values">
             {VALUES.map((v, i) => (
               <div
                 key={v.title}
@@ -113,7 +113,7 @@ export default function AboutPage({ nav }) {
       </section>
 
       {/* ── TIMELINE ── */}
-      <section style={{ background: CREAM, padding: "8rem 4rem" }}>
+      <section className="r-sec r-pad" style={{ background: CREAM }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: "4rem" }}>
             <div style={{ display: "inline-flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
@@ -126,7 +126,7 @@ export default function AboutPage({ nav }) {
             {TIMELINE.map((item, i) => (
               <div key={item.year} style={{ position: "relative", marginBottom: "2.5rem" }}>
                 <div style={{ position: "absolute", left: "calc(-2rem - 8px)", top: 4, width: 16, height: 16, background: G, borderRadius: "50%", border: `3px solid ${CREAM}` }} />
-                <div style={{ display: "grid", gridTemplateColumns: "100px 1fr", gap: "1.5rem", alignItems: "start", background: i % 2 === 0 ? WHITE : "transparent", padding: "1.5rem 2rem", borderRadius: RADIUS, border: i % 2 === 0 ? `1px solid rgba(155,53,116,0.2)` : "none" }}>
+                <div className="timeline-grid" style={{ display: "grid", gridTemplateColumns: "100px 1fr", gap: "1.5rem", alignItems: "start", background: i % 2 === 0 ? WHITE : "transparent", padding: "1.5rem 2rem", borderRadius: RADIUS, border: i % 2 === 0 ? `1px solid rgba(155,53,116,0.2)` : "none" }}>
                   <div style={{ fontFamily: "'Manrope', sans-serif", fontSize: "1.5rem", fontWeight: 700, color: DARK }}>{item.year}</div>
                   <div>
                     <div style={{ fontFamily: "'Manrope', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: DARK, marginBottom: "0.5rem" }}>{item.title}</div>
@@ -140,7 +140,7 @@ export default function AboutPage({ nav }) {
       </section>
 
       {/* ── CTA ── */}
-      <section style={{ background: G, padding: "5rem 4rem", textAlign: "center" }}>
+      <section className="r-sec r-pad" style={{ background: G, textAlign: "center" }}>
         <h2 style={{ fontFamily: "'Manrope', sans-serif", fontSize: "2rem", fontWeight: 600, color: "#fff", marginBottom: "1rem" }}>
           Bizimlə əməkdaşlığa hazırsınız?
         </h2>

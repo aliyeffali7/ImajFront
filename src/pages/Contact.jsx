@@ -35,8 +35,8 @@ export default function ContactPage() {
         img="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1400&q=85"
       />
 
-      <section style={{ padding: "7rem 4rem", background: WHITE }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1.3fr", gap: "7rem" }}>
+      <section className="r-sec r-pad" style={{ background: WHITE }}>
+        <div className="g-contact" style={{ maxWidth: 1200, margin: "0 auto" }}>
 
           {/* ── LEFT: INFO ── */}
           <div>
@@ -72,7 +72,7 @@ export default function ContactPage() {
           </div>
 
           {/* ── RIGHT: FORM ── */}
-          <div style={{ background: CREAM, padding: "3.5rem", borderRadius: RADIUS }}>
+          <div className="form-box" style={{ background: CREAM, borderRadius: RADIUS }}>
             {sent ? (
               <div style={{ textAlign: "center", padding: "4rem 2rem" }}>
                 <div style={{ fontSize: "3rem", marginBottom: "1.5rem" }}>✅</div>
@@ -86,7 +86,7 @@ export default function ContactPage() {
                 <h3 style={{ fontFamily: "'Manrope', sans-serif", fontSize: "1.4rem", color: DARK, marginBottom: "2.5rem", fontWeight: 600 }}>
                   Bizə mesaj göndərin
                 </h3>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.8rem 2rem" }}>
+                <div className="g-form">
 
                     {[
                     { id: "name",  label: "Ad və soyad",        type: "text",  placeholder: "Tam adınız",       span: 1 },
@@ -135,7 +135,7 @@ export default function ContactPage() {
                     </select>
                   </div>
 
-                  <div style={{ gridColumn: "span 2" }}>
+                  <div className="span-2">
                     <label style={{ fontFamily: "'Manrope', sans-serif", fontSize: "0.66rem", letterSpacing: "0.18em", color: "#aaa", textTransform: "uppercase", display: "block", marginBottom: "0.4rem" }}>Mesaj</label>
                     <textarea
                       rows={4}
@@ -148,7 +148,7 @@ export default function ContactPage() {
                     />
                   </div>
 
-                  <div style={{ gridColumn: "span 2" }}>
+                  <div className="span-2">
                     <button
                       onClick={() => setSent(true)}
                       style={{ padding: "1rem 2.5rem", background: G, color: "#fff", border: "none", fontFamily: "'Manrope', sans-serif", fontSize: "0.82rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", cursor: "pointer", transition: "background 0.3s" }}
@@ -167,8 +167,8 @@ export default function ContactPage() {
       </section>
 
       {/* ── ADDITIONAL INFO ── */}
-      <section style={{ background: CREAM, padding: "6rem 4rem" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "2rem" }}>
+      <section className="r-sec r-pad" style={{ background: CREAM }}>
+        <div className="g-info" style={{ maxWidth: 1200, margin: "0 auto" }}>
           {[
             { title: "Yeni layihələr üçün", desc: "İnternet xidməti, hosting, şəbəkə infrastrukturu və ya kibertəhlükəsizlik ehtiyaclarınız üçün mütəxəssis komandamızla əlaqə saxlayın.", cta: "Məsləhət al" },
             { title: "Karyera üçün", desc: "Komandamıza qoşulmaq üçün istedadlı şəbəkə mühəndisləri, sistem administratorları və kibertəhlükəsizlik mütəxəssislərini axtarırıq.", cta: "Vakansiyalara bax" },

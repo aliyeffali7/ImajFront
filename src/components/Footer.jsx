@@ -4,7 +4,7 @@ export default function Footer({ nav }) {
   const cols = [
     {
       heading: "Şirkət",
-      links: [["Ana səhifə", "home"], ["Haqqımızda", "about"], ["Xidmətlər", "services"], ["Layihələr", "projects"]],
+      links: [["Ana səhifə", "home"], ["Haqqımızda", "about"], ["Xidmətlər", "services"], ["Şəkillər", "media-foto"], ["Videolar", "media-video"], ["Sənədlər", "media-senedler"]],
     },
     {
       heading: "Xidmətlər",
@@ -17,12 +17,9 @@ export default function Footer({ nav }) {
   ];
 
   return (
-    <footer style={{ background: DARK, padding: "4rem", fontFamily: "'Manrope', sans-serif" }}>
+    <footer className="r-pad" style={{ background: DARK, paddingTop: "4rem", paddingBottom: "4rem", fontFamily: "'Manrope', sans-serif" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "2fr 1fr 1fr 1fr",
-          gap: "3rem",
+        <div className="g-footer" style={{
           paddingBottom: "3rem",
           borderBottom: "1px solid rgba(255,255,255,0.08)",
         }}>
@@ -60,11 +57,11 @@ export default function Footer({ nav }) {
           ))}
         </div>
 
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: "2rem" }}>
+        <div className="g-footer-bottom">
           <div style={{ color: "#444", fontSize: "0.75rem" }}>
-            © 2025 ImajOnline IT Services. Bütün hüquqlar qorunur.
+            © 2026 ImajOnline IT Services. Bütün hüquqlar qorunur. DESINFTEC tərəfindən hazırlanmışdır.
           </div>
-          <div style={{ display: "flex", gap: "1.5rem" }}>
+          <div className="footer-social">
             {["Instagram", "LinkedIn", "Facebook"].map((s) => (
               <a
                 key={s}

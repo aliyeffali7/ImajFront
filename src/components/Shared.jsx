@@ -62,8 +62,6 @@ export function PageHero({ title, subtitle, img }) {
       position: "relative",
       display: "flex",
       alignItems: "flex-end",
-      paddingBottom: "4rem",
-      paddingLeft: "4rem",
       overflow: "hidden",
       borderRadius: RADIUS,
     }}>
@@ -73,7 +71,7 @@ export function PageHero({ title, subtitle, img }) {
         style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", borderRadius: RADIUS }}
       />
       <div style={{ position: "absolute", inset: 0, background: "rgba(15,12,8,0.65)" }} />
-      <div style={{ position: "relative" }}>
+      <div className="page-hero-inner" style={{ position: "relative" }}>
         <div style={{ display: "inline-flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
           <div style={{ width: 28, height: 1.5, background: GL }} />
           <span style={{ fontFamily: "'Manrope', sans-serif", fontSize: "0.7rem", letterSpacing: "0.28em", color: GL, textTransform: "uppercase" }}>
