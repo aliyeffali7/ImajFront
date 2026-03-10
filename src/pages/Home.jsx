@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { G, GL, CREAM, WHITE, DARK, MID, LIGHT, RADIUS } from "../theme";
 import { Label, H2 } from "../components/Shared";
-import { SERVICES_DATA } from "../data";
+import { apiFetch, normalizeSvc, normalizePartner, toList } from "../api";
 
 function useCountUp(target, duration = 1800, start = false) {
   const [count, setCount] = useState(0);
@@ -23,6 +23,33 @@ export default function HomePage({ nav }) {
   const [statsVisible, setStatsVisible] = useState(false);
   const [hov, setHov] = useState(null);
   const statsRef = useRef(null);
+  const [settings, setSettings] = useState(null);
+  const [services, setServices] = useState([]);
+  const [partners, setPartners] = useState([]);
+
+  useEffect(() => {
+    let cancelled = false;
+    apiFetch("/site-settings/")
+      .then((d) => { if (!cancelled) setSettings(d); })
+      .catch(() => {});
+    apiFetch("/services/")
+      .then((d) => {
+        if (!cancelled) {
+          const list = toList(d).sort((a, b) => (a.sıra ?? 0) - (b.sıra ?? 0)).map(normalizeSvc);
+          if (list.length) setServices(list);
+        }
+      })
+      .catch(() => {});
+    apiFetch("/partners/")
+      .then((d) => {
+        if (!cancelled) {
+          const list = toList(d).sort((a, b) => (a.göstərmə_sırası ?? 0) - (b.göstərmə_sırası ?? 0)).map(normalizePartner);
+          if (list.length) setPartners(list);
+        }
+      })
+      .catch(() => {});
+    return () => { cancelled = true; };
+  }, []);
 
   useEffect(() => {
     const obs = new IntersectionObserver(
@@ -45,13 +72,17 @@ export default function HomePage({ nav }) {
     { v: 8,   s: "",  l: "Sənaye mükafatları" },
   ];
 
+  const heroImg   = settings?.hero_şəkil_url  || "/network.png";
+  const heroLabel = settings?.hero_alt_başlıq || "Esas. 2009 · Bakı, Azərbaycan";
+  const aboutText = settings?.haqqimizda_qisa || "ImajOnline Azərbaycanın aparıcı IT xidmətlər şirkətidir — ölkənin rəqəmsal infrastrukturunu müəyyən edən internet provayderlik, bulud hosting, şəbəkə həlləri və kibertəhlükəsizlik xidmətləri göstərir.";
+
   return (
     <div style={{ background: CREAM }}>
 
       {/* ── HERO ── */}
       <section style={{ height: "100vh", position: "relative", display: "flex", alignItems: "center", overflow: "hidden" }}>
         <img
-          src="/network.png"
+          src={heroImg}
           alt="Hero"
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
         />
@@ -61,7 +92,7 @@ export default function HomePage({ nav }) {
           <div style={{ display: "inline-flex", alignItems: "center", gap: "0.75rem", marginBottom: "2rem", animation: "fadeUp 1s ease 0.2s both" }}>
             <div style={{ width: 28, height: 1, background: GL }} />
             <span style={{ fontFamily: "'Manrope', sans-serif", fontSize: "0.7rem", letterSpacing: "0.3em", color: GL, textTransform: "uppercase" }}>
-              Esas. 2009 · Bakı, Azərbaycan
+              {heroLabel}
             </span>
           </div>
 
@@ -131,11 +162,8 @@ export default function HomePage({ nav }) {
               Rəqəmsal infrastrukturun<br />
               <em style={{ color: G, fontWeight: 400 }}>2009-cu ildən etibarlı tərəfdaşı</em>
             </H2>
-            <p style={{ fontFamily: "'Manrope', sans-serif", color: MID, lineHeight: 1.95, fontSize: "0.95rem", marginBottom: "1.2rem", fontWeight: 300 }}>
-              ImajOnline Azərbaycanın aparıcı IT xidmətlər şirkətidir — ölkənin rəqəmsal infrastrukturunu müəyyən edən internet provayderlik, bulud hosting, şəbəkə həlləri və kibertəhlükəsizlik xidmətləri göstərir.
-            </p>
             <p style={{ fontFamily: "'Manrope', sans-serif", color: MID, lineHeight: 1.95, fontSize: "0.95rem", marginBottom: "2.5rem", fontWeight: 300 }}>
-              250-dən çox texniki mütəxəssis və 15 illik təcrübə ilə regionda dövlət qurumlarının, bankların və biznes şirkətlərinin etibarlı IT tərəfdaşıyıq.
+              {aboutText}
             </p>
             <button
               onClick={() => nav("about")}
@@ -159,7 +187,7 @@ export default function HomePage({ nav }) {
             </button>
           </div>
           <div className="g-services">
-            {SERVICES_DATA.map((s, i) => (
+            {services.map((s, i) => (
               <div
                 key={s.id}
                 onMouseEnter={() => setHov(i)}
@@ -177,6 +205,51 @@ export default function HomePage({ nav }) {
           </div>
         </div>
       </section>
+
+      {/* ── PARTNERS MARQUEE ── */}
+      {partners.length > 0 && (() => {
+        const loop = partners.length >= 6;
+        const items = loop ? [...partners, ...partners] : partners;
+        return (
+          <section style={{ background: WHITE, borderTop: "1px solid #ede8df", borderBottom: "1px solid #ede8df", padding: "3rem 0", overflow: "hidden" }}>
+            {loop && (
+              <style>{`
+                @keyframes marquee {
+                  0%   { transform: translateX(0); }
+                  100% { transform: translateX(-50%); }
+                }
+              `}</style>
+            )}
+            <div style={{
+              display: "flex",
+              width: loop ? "max-content" : "100%",
+              justifyContent: loop ? undefined : "center",
+              flexWrap: loop ? undefined : "wrap",
+              gap: loop ? undefined : "3rem",
+              animation: loop ? "marquee 28s linear infinite" : "none",
+            }}>
+              {items.map((p, i) => (
+                <a
+                  key={i}
+                  href={p.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  title={p.name}
+                  style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "0 3.5rem", flexShrink: 0 }}
+                >
+                  <img
+                    src={p.logo}
+                    alt={p.name}
+                    style={{ height: 120, maxWidth: 240, objectFit: "contain", filter: "grayscale(100%)", opacity: 0.6, transition: "filter 0.3s, opacity 0.3s" }}
+                    onMouseEnter={(e) => { e.target.style.filter = "grayscale(0%)"; e.target.style.opacity = "1"; }}
+                    onMouseLeave={(e) => { e.target.style.filter = "grayscale(100%)"; e.target.style.opacity = "0.6"; }}
+                  />
+                </a>
+              ))}
+            </div>
+          </section>
+        );
+      })()}
 
       {/* ── CTA BAND ── */}
       <section className="r-sec r-pad" style={{ background: DARK, position: "relative", overflow: "hidden" }}>

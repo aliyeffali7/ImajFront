@@ -1,4 +1,4 @@
-import { G, GL, DARK } from "../theme";
+import { G, GL, DARK, CREAM} from "../theme";
 
 export default function Footer({ nav }) {
   const cols = [
@@ -8,7 +8,7 @@ export default function Footer({ nav }) {
     },
     {
       heading: "Xidmətlər",
-      links: [["İnternet xidmətləri", "services"], ["Hosting & Bulud", "services"], ["Şəbəkə infrastrukturu", "services"], ["Kibertəhlükəsizlik", "services"]],
+      links: [["İnternet paketləri", "services"], ["Hosting paketləri", "services"], ["SSL sertifkatları ", "services"], ["VPS Paketləri", "services"],["Domen", "services"],["Mail server paketləri", "services"],],
     },
     {
       heading: "Əlaqə",
@@ -27,13 +27,13 @@ export default function Footer({ nav }) {
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.2rem" }}>
               <img
-                src="/image 3.svg"
+                src="/logo boz.png"
                 alt="ImajOnline loqosu"
-                style={{ height: 30, width: "auto", display: "block" }}
+                style={{ height: "50px", width: "auto", display: "block" }}
               />
             </div>
-            <p style={{ color: "#666", fontSize: "0.88rem", lineHeight: 1.8, maxWidth: 280, fontWeight: 300 }}>
-              2009-cu ildən bəri internet, hosting, şəbəkə infrastrukturu və kibertəhlükəsizlik xidmətləri göstərən Azərbaycanın aparıcı IT şirkəti ImajOnline.
+            <p style={{ color: "#d3d1d1", fontSize: "0.88rem", lineHeight: 1.8, maxWidth: 280, fontWeight: 300 }}>
+              2025-ci ildən bəri internet, hosting, şəbəkə infrastrukturu və kibertəhlükəsizlik xidmətləri göstərən Azərbaycanın aparıcı IT şirkəti ImajOnline.
             </p>
           </div>
 
@@ -46,7 +46,7 @@ export default function Footer({ nav }) {
                 <button
                   key={label}
                   onClick={() => nav(key)}
-                  style={{ display: "block", background: "none", border: "none", cursor: "pointer", color: "#666", fontSize: "0.85rem", lineHeight: 2, textAlign: "left", transition: "color 0.3s" }}
+                  style={{ display: "block", background: "none", border: "none", cursor: "pointer", color: "#d3d1d1", fontSize: "0.85rem", lineHeight: 2, textAlign: "left", transition: "color 0.3s" }}
                   onMouseEnter={(e) => (e.target.style.color = GL)}
                   onMouseLeave={(e) => (e.target.style.color = "#666")}
                 >
@@ -58,19 +58,24 @@ export default function Footer({ nav }) {
         </div>
 
         <div className="g-footer-bottom">
-          <div style={{ color: "#444", fontSize: "0.75rem" }}>
-            © 2026 ImajOnline IT Services. Bütün hüquqlar qorunur. DESINFTEC tərəfindən hazırlanmışdır.
+          <div style={{ color: "#d3d1d1", fontSize: "0.75rem" }}>
+            © 2026 ImajOnline IT Services. Bütün hüquqlar qorunur.{" "}
+            <a href="https://desinftec.az" target="_blank" rel="noreferrer" style={{ color: "#d3d1d1", textDecoration: "none", transition: "color 0.3s" }} onMouseEnter={(e) => (e.target.style.color = G)} onMouseLeave={(e) => (e.target.style.color = "#666")}>DESINFTEC</a>
+            {" "}tərəfindən hazırlanmışdır.
           </div>
           <div className="footer-social">
-            {["Instagram", "LinkedIn", "Facebook"].map((s) => (
+            {[
+              {name: "Instagram", url: "https://www.instagram.com/imaj_online/"},
+              {name: "Facebook", url: ""},
+            ].map((s) => (
               <a
-                key={s}
-                href="#"
-                style={{ color: "#444", fontSize: "0.75rem", transition: "color 0.3s", textDecoration: "none" }}
+                key={s.name}
+                href={s.url || "#"}
+                style={{ color: "#d3d1d1", fontSize: "0.75rem", transition: "color 0.3s", textDecoration: "none" }}
                 onMouseEnter={(e) => (e.target.style.color = G)}
                 onMouseLeave={(e) => (e.target.style.color = "#444")}
               >
-                {s}
+                {s.name}
               </a>
             ))}
           </div>

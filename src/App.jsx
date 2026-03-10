@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Navbar        from "./components/Navbar";
 import Footer        from "./components/Footer";
 import HomePage      from "./pages/Home";
@@ -8,16 +8,10 @@ import ContactPage   from "./pages/Contact";
 import PhotosPage    from "./pages/Photos";
 import VideosPage    from "./pages/Videos";
 import DocumentsPage from "./pages/Documents";
+import PartnersPage  from "./pages/Partners";
 
 export default function App() {
   const [page,    setPage]    = useState("home");
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const h = () => setScrolled(window.scrollY > 60);
-    window.addEventListener("scroll", h);
-    return () => window.removeEventListener("scroll", h);
-  }, []);
 
   const nav = (target) => {
     setPage(target);
@@ -58,7 +52,7 @@ export default function App() {
         .g-about        { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
         .g-mission      { display: grid; grid-template-columns: 1fr 1fr; gap: 7rem; align-items: center; }
         .g-services     { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.25rem; }
-        .g-values       { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; }
+        .g-values       { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; }
         .g-process      { display: grid; grid-template-columns: repeat(5,1fr); gap: 1.5rem; }
         .g-contact      { display: grid; grid-template-columns: 1fr 1.3fr; gap: 7rem; }
         .g-info         { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; }
@@ -131,7 +125,7 @@ export default function App() {
         }
       `}</style>
 
-      <Navbar page={page} nav={nav} scrolled={scrolled} />
+      <Navbar page={page} nav={nav} />
 
       <main>
         {page === "home"           && <HomePage      nav={nav} />}
@@ -141,6 +135,7 @@ export default function App() {
         {page === "media-foto"     && <PhotosPage    nav={nav} />}
         {page === "media-video"    && <VideosPage    nav={nav} />}
         {page === "media-senedler" && <DocumentsPage nav={nav} />}
+        {page === "partners"       && <PartnersPage  nav={nav} />}
       </main>
 
       <Footer nav={nav} />

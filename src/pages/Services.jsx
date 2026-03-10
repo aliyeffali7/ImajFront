@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { G, CREAM, WHITE, DARK, MID, LIGHT, RADIUS } from "../theme";
 import { Label, H2, PageHero } from "../components/Shared";
-import { SERVICES_DATA } from "../data";
+import { apiFetch, normalizeSvc, normalizePkg, toList } from "../api";
 
 const CHECK = (
   <svg width="15" height="15" viewBox="0 0 15 15" fill="none" style={{ flexShrink: 0, marginTop: 2 }}>
@@ -54,8 +54,47 @@ const PROCESS = [
 ];
 
 export default function ServicesPage({ nav }) {
-  const [active, setActive] = useState(0);
-  const svc = SERVICES_DATA[active];
+  const [active, setActive]     = useState(0);
+  const [tabs, setTabs]         = useState([]);
+  const [packages, setPackages] = useState({});
+  const [loading, setLoading]   = useState(true);
+
+  useEffect(() => {
+    let cancelled = false;
+    apiFetch("/services/")
+      .then((d) => {
+        if (!cancelled) {
+          const list = toList(d).sort((a, b) => (a.sıra ?? 0) - (b.sıra ?? 0)).map(normalizeSvc);
+          if (list.length) setTabs(list);
+          setLoading(false);
+        }
+      })
+      .catch(() => { if (!cancelled) setLoading(false); });
+    return () => { cancelled = true; };
+  }, []);
+
+  useEffect(() => {
+    const svcId = tabs[active]?.id;
+    if (!svcId || packages[svcId]) return;
+    let cancelled = false;
+    apiFetch(`/services/${svcId}/packages/`)
+      .then((d) => {
+        if (!cancelled) {
+          const pkgs = toList(d)
+            .sort((a, b) => (a.sıra ?? 0) - (b.sıra ?? 0))
+            .map(normalizePkg);
+          setPackages((prev) => ({ ...prev, [svcId]: pkgs }));
+        }
+      })
+      .catch(() => {});
+    return () => { cancelled = true; };
+  }, [active, tabs]);
+
+  const svcId = tabs[active]?.id;
+  const svc = {
+    ...tabs[active],
+    packages: packages[svcId] ?? tabs[active]?.packages ?? [],
+  };
 
   return (
     <div style={{ background: CREAM }}>
@@ -65,10 +104,24 @@ export default function ServicesPage({ nav }) {
         img="/xidmetler.png"
       />
 
+      {loading && (
+        <section style={{ padding: "8rem 4rem", textAlign: "center", fontFamily: "'Manrope', sans-serif", color: "#aaa" }}>
+          Yüklənir...
+        </section>
+      )}
+
+      {!loading && tabs.length === 0 && (
+        <section style={{ padding: "8rem 4rem", textAlign: "center", fontFamily: "'Manrope', sans-serif", color: "#aaa" }}>
+          Xidmət tapılmadı.
+        </section>
+      )}
+
+      {!loading && tabs.length > 0 && <>
+
       {/* ── CATEGORY TABS ── */}
       <section style={{ background: WHITE, borderBottom: "1px solid #ede8df", position: "sticky", top: 72, zIndex: 100 }}>
         <div className="tabs-wrap r-pad" style={{ maxWidth: 1200, margin: "0 auto" }}>
-          {SERVICES_DATA.map((s, i) => (
+          {tabs.map((s, i) => (
             <button
               key={s.id}
               onClick={() => setActive(i)}
@@ -155,6 +208,8 @@ export default function ServicesPage({ nav }) {
           </div>
         </div>
       </section>
+
+      </>}
     </div>
   );
 }

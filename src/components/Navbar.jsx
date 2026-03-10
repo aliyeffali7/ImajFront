@@ -7,16 +7,17 @@ const MEDIA_ITEMS = [
   { label: "Sənədlər", key: "media-senedler" },
 ];
 
+
 const NAV_LINKS = [
   { label: "Ana səhifə", key: "home" },
   { label: "Haqqımızda", key: "about" },
   { label: "Xidmətlər",  key: "services" },
   { label: "Media",      key: "media" },
+  { label: "Tərəfdaşlar", key: "partners" },
   { label: "Əlaqə",      key: "contact" },
 ];
 
-export default function Navbar({ page, nav, scrolled }) {
-  const transparent = page === "home" && !scrolled;
+export default function Navbar({ page, nav }) {
   const [mediaOpen, setMediaOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileMediaOpen, setMobileMediaOpen] = useState(false);
@@ -45,10 +46,8 @@ export default function Navbar({ page, nav, scrolled }) {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        background: transparent ? "transparent" : "rgba(250,248,245,0.97)",
-        borderBottom: transparent ? "none" : "1px solid rgba(155,53,116,0.2)",
-        backdropFilter: transparent ? "none" : "blur(14px)",
-        transition: "all 0.4s ease",
+        background: "#fff",
+        borderBottom: "1px solid rgba(155,53,116,0.2)",
         fontFamily: "'Manrope', sans-serif",
       }}>
         {/* Logo */}
@@ -56,8 +55,8 @@ export default function Navbar({ page, nav, scrolled }) {
           onClick={() => { nav("home"); setMobileOpen(false); }}
           style={{ display: "flex", alignItems: "center", gap: "0.75rem", background: "none", border: "none", cursor: "pointer" }}
         >
-          <img src="/image 3.svg" alt="ImajOnline loqosu" style={{ height: 32, width: "auto", display: "block" }} />
-          <span style={{ fontFamily: "'Manrope', sans-serif", fontSize: "0.95rem", fontWeight: 700, color: transparent ? "#fff" : DARK, letterSpacing: "0.05em", transition: "color 0.4s" }} />
+          <img src="/image 3.svg" alt="ImajOnline loqosu" style={{ height: 52, width: "auto", display: "block" }} />
+          <span style={{ fontFamily: "'Manrope', sans-serif", fontSize: "0.95rem", fontWeight: 700, color: DARK, letterSpacing: "0.05em" }} />
         </button>
 
         {/* Desktop Links */}
@@ -82,7 +81,7 @@ export default function Navbar({ page, nav, scrolled }) {
                       fontSize: "0.8rem",
                       letterSpacing: "0.1em",
                       textTransform: "uppercase",
-                      color: isActive ? G : (transparent ? "rgba(255,255,255,0.85)" : "#666"),
+                      color: isActive ? G : "#111",
                       fontWeight: isActive ? 600 : 400,
                       padding: "0.25rem 0",
                       transition: "color 0.3s",
@@ -90,8 +89,8 @@ export default function Navbar({ page, nav, scrolled }) {
                       alignItems: "center",
                       gap: "0.35rem",
                     }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = G)}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = isActive ? G : (transparent ? "rgba(255,255,255,0.85)" : "#666"))}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = DARK)}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = isActive ? G : "#111")}
                   >
                     Media
                     <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor" style={{ opacity: 0.7 }}>
@@ -160,13 +159,13 @@ export default function Navbar({ page, nav, scrolled }) {
                   fontSize: "0.8rem",
                   letterSpacing: "0.1em",
                   textTransform: "uppercase",
-                  color: isActive ? G : (transparent ? "rgba(255,255,255,0.85)" : "#666"),
+                  color: isActive ? G : "#111",
                   fontWeight: isActive ? 600 : 400,
                   padding: "0.25rem 0",
                   transition: "color 0.3s",
                 }}
                 onMouseEnter={(e) => (e.target.style.color = G)}
-                onMouseLeave={(e) => (e.target.style.color = isActive ? G : (transparent ? "rgba(255,255,255,0.85)" : "#666"))}
+                onMouseLeave={(e) => (e.target.style.color = isActive ? G : "#111")}
               >
                 {l.label}
               </button>
@@ -201,7 +200,7 @@ export default function Navbar({ page, nav, scrolled }) {
           className="nav-hamburger"
           onClick={() => setMobileOpen((o) => !o)}
           aria-label="Menyu"
-          style={{ color: transparent ? "#fff" : DARK }}
+          style={{ color: DARK }}
         >
           {mobileOpen ? (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
@@ -230,9 +229,6 @@ export default function Navbar({ page, nav, scrolled }) {
             <line x1="6" y1="6" x2="18" y2="18" />
           </svg>
         </button>
-
-        {/* Logo in mobile menu */}
-        <img src="/image 3.svg" alt="ImajOnline" style={{ height: 36, marginBottom: "1rem" }} />
 
         {NAV_LINKS.map((l) => {
           const isActive = l.key === "media" ? isMediaPage : page === l.key;
